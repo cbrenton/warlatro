@@ -1,22 +1,5 @@
 extends Node2D
 
-const SUITS = ["hearts", "clubs", "diamonds", "spades"]
-const RANKS = {
-	2: "2",
-	3: "3",
-	4: "4",
-	5: "5",
-	6: "6",
-	7: "7",
-	8: "8",
-	9: "9",
-	10: "10",
-	11: "jack",
-	12: "queen",
-	13: "king",
-	14: "ace",
-}
-
 var rank = 0
 var suit = null
 var texture = null
@@ -44,5 +27,15 @@ func initialize(rank = null, suit = null):
 	else:
 		print("no rank or suit passed")
 
-	var texture_path = "res://assets/cards/%s_of_%s.png" % [self.rank, self.suit]
+	#var texture_path = "res://assets/cards/%s_of_%s.png" % [self.rank, self.suit]
+	var texture_path = "res://assets/cards/card_%s_%s.png" % [self.suit, self.rank]
 	self.texture = load(texture_path)
+
+# other is a Node of type Card
+# returns -1 if loses to other, 0 if ties, 1 if beats
+func compare(other: Node) -> int:
+	if other.rank > self.rank:
+		return -1
+	if other.rank == self.rank:
+		return 0
+	return 1

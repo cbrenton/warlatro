@@ -1,20 +1,22 @@
 [gd_scene format=3 uid="uid://bljfg81mah7i0"]
 
-[ext_resource type="Texture2D" uid="uid://cqsmcsi78gnov" path="res://assets/cards/red_joker.png" id="1_kikvd"]
 [ext_resource type="Script" uid="uid://6g8toirlsphb" path="res://card.gd" id="1_rjlel"]
+[ext_resource type="Texture2D" uid="uid://cqnipgiset4hj" path="res://assets/cards/card_back.png" id="2_rjlel"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
-size = Vector2(497, 725)
+size = Vector2(40.000015, 60.000023)
 
 [node name="Card" type="Node2D" unique_id=1878891690]
-scale = Vector2(0.2, 0.2)
+scale = Vector2(4, 4)
 script = ExtResource("1_rjlel")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1635685929]
-texture = ExtResource("1_kikvd")
+position = Vector2(-0.50000095, -0.50000095)
+texture = ExtResource("2_rjlel")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=70251522]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=716686556]
-position = Vector2(-0.5, -0.5)
+position = Vector2(-5.960461e-07, 0)
+scale = Vector2(0.99999946, 0.99999946)
 shape = SubResource("RectangleShape2D_ig7tw")

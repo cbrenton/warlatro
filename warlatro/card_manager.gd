@@ -61,7 +61,12 @@ func handle_click():
 	if self.player_stack.has_turns_left() and self.cpu_stack.has_turns_left():
 		if player_card and cpu_card:
 			print("comparing two cards")
-		else:
-			print("ready for next turn")
+			var result = player_card.compare(cpu_card)
+			if result < 0:
+				print("cpu wins this one")
+			elif result == 0:
+				print("you tied")
+			else:
+				print("you won!")
 	else:
 		print("game over")

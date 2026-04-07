@@ -2,19 +2,19 @@ extends Node2D
 
 const SUITS = ["hearts", "clubs", "diamonds", "spades"]
 const RANKS = {
-	2: "2",
-	3: "3",
-	4: "4",
-	5: "5",
-	6: "6",
-	7: "7",
-	8: "8",
-	9: "9",
+	2: "02",
+	3: "03",
+	4: "04",
+	5: "05",
+	6: "06",
+	7: "07",
+	8: "08",
+	9: "09",
 	10: "10",
-	11: "jack",
-	12: "queen",
-	13: "king",
-	14: "ace",
+	11: "J",
+	12: "Q",
+	13: "K",
+	14: "A",
 }
 
 const CARD_SCENE = preload("res://card.tscn")
