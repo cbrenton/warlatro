@@ -27,7 +27,7 @@ func _init():
 		for suit in SUITS:
 			var rank_str = RANKS[rank_item]
 			var card = CARD_SCENE.instantiate()
-			card.initialize(rank_str, suit)
+			card.initialize(rank_item, rank_str, suit)
 			self.cards.push_back(card)
 
 func shuffle():

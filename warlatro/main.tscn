@@ -3,14 +3,22 @@
 [ext_resource type="Script" uid="uid://dotud1c8v7iww" path="res://card_manager.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://6jur6866ig57" path="res://deck.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dwtqy7aus3b8d" path="res://stack.tscn" id="3_1bvp3"]
-[ext_resource type="Script" uid="uid://cnh2s5fl1dtgq" path="res://stack.gd" id="4_lquwl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
+font_size = 64
 
 [node name="Main" type="Node2D" unique_id=974964384]
 
 [node name="CardManager" type="Node2D" parent="." unique_id=1688188572]
 script = ExtResource("1_0xm2m")
 
+[node name="WinLabel" type="Label" parent="CardManager" unique_id=67571283]
+offset_left = 800.0
+offset_top = 183.0
+offset_right = 959.0
+offset_bottom = 254.0
+label_settings = SubResource("LabelSettings_h2yge")
+
 [node name="Deck" parent="." unique_id=25859790 instance=ExtResource("2_0xm2m")]
 
 [node name="Stack" parent="." unique_id=235796473 instance=ExtResource("3_1bvp3")]
-script = ExtResource("4_lquwl")

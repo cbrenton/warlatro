@@ -6,6 +6,9 @@ const STACK_SCENE = preload("res://stack.tscn")
 var player_stack;
 var cpu_stack;
 var deck;
+var is_game_ended = false
+
+@onready var my_label = $WinLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,8 +25,7 @@ func _ready() -> void:
 	add_child(self.player_stack)
 	add_child(self.cpu_stack)
 
-	# while not self.deck.empty():
-	for i in range(3):
+	while not self.deck.empty():
 		self.player_stack.add_card(self.deck.deal_top())
 		self.cpu_stack.add_card(self.deck.deal_top())
 
@@ -56,17 +58,28 @@ func raycast_check_for_card():
 # at beginning, create player stack
 # deal from deck, add child to stack
 func handle_click():
+	if self.is_game_ended:
+		return
+
 	var player_card = self.player_stack.next_turn()
 	var cpu_card = self.cpu_stack.next_turn()
 	if self.player_stack.has_turns_left() and self.cpu_stack.has_turns_left():
 		if player_card and cpu_card:
-			print("comparing two cards")
 			var result = player_card.compare(cpu_card)
 			if result < 0:
-				print("cpu wins this one")
+				self.cpu_stack.win_card(player_card)
+				self.cpu_stack.win_card(cpu_card)
 			elif result == 0:
-				print("you tied")
+				self.player_stack.win_card(player_card)
+				self.cpu_stack.win_card(cpu_card)
 			else:
-				print("you won!")
+				self.player_stack.win_card(player_card)
+				self.player_stack.win_card(cpu_card)
 	else:
-		print("game over")
+		self.is_game_ended = true
+		self.player_stack.set_label()
+		self.cpu_stack.set_label()
+		if not self.player_stack.cards.is_empty():
+			$WinLabel.text = "You win!"
+		else:
+			$WinLabel.text = "You lose!"

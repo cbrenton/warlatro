@@ -2,5 +2,14 @@
 
 [ext_resource type="Script" uid="uid://cnh2s5fl1dtgq" path="res://stack.gd" id="1_hmspu"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_hmspu"]
+font_size = 32
+
 [node name="Stack" type="Node2D" unique_id=235796473]
 script = ExtResource("1_hmspu")
+
+[node name="CardsLeftLabel" type="Label" parent="." unique_id=854095254]
+offset_right = 125.0
+offset_bottom = 52.0
+label_settings = SubResource("LabelSettings_hmspu")
+horizontal_alignment = 1

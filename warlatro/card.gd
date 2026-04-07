@@ -1,15 +1,18 @@
 extends Node2D
 
-var rank = 0
+var rank_value = 0
+var rank_str = null
 var suit = null
 var texture = null
-var rng;
-var is_flipped = false;
+var back_texture = null
+var rng
+var is_flipped = false
 
-# returns true if card deleted
+# returns true if card should be deleted
 func flip() -> bool:
 	if self.is_flipped:
-		queue_free()
+		$Sprite2D.texture = self.back_texture
+		self.is_flipped = false
 		return true
 	else:
 		$Sprite2D.texture = self.texture
@@ -20,22 +23,24 @@ func handle_click():
 	get_parent().get_parent().handle_click()
 
 # rank is a string
-func initialize(rank = null, suit = null):
-	if rank and suit:
-		self.rank = rank
+func initialize(rank_value = null, rank_str = null, suit = null):
+	if rank_value and rank_str and suit:
+		self.rank_value = rank_value
+		self.rank_str = rank_str
 		self.suit = suit
 	else:
 		print("no rank or suit passed")
 
-	#var texture_path = "res://assets/cards/%s_of_%s.png" % [self.rank, self.suit]
-	var texture_path = "res://assets/cards/card_%s_%s.png" % [self.suit, self.rank]
+	var texture_path = "res://assets/cards/card_%s_%s.png" % [self.suit, self.rank_str]
 	self.texture = load(texture_path)
+	var back_texture_path = "res://assets/cards/card_back.png"
+	self.back_texture = load(back_texture_path)
 
 # other is a Node of type Card
 # returns -1 if loses to other, 0 if ties, 1 if beats
 func compare(other: Node) -> int:
-	if other.rank > self.rank:
+	if other.rank_value > self.rank_value:
 		return -1
-	if other.rank == self.rank:
+	if other.rank_value == self.rank_value:
 		return 0
 	return 1
