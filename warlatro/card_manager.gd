@@ -4,6 +4,7 @@ const DECK_SCENE = preload("res://deck.tscn")
 const STACK_SCENE = preload("res://stack.tscn")
 
 var player_stack;
+var cpu_stack;
 var deck;
 
 # Called when the node enters the scene tree for the first time.
@@ -13,11 +14,20 @@ func _ready() -> void:
 
 	self.player_stack = STACK_SCENE.instantiate()
 	self.player_stack.initialize(Vector2(100, 200))
+
+	self.cpu_stack = STACK_SCENE.instantiate()
+	self.cpu_stack.initialize(Vector2(300, 200))
+
 	add_child(self.player_stack)
+	add_child(self.cpu_stack)
+
 	# while not self.deck.empty():
 	for i in range(3):
 		self.player_stack.add_card(self.deck.deal_top())
+		self.cpu_stack.add_card(self.deck.deal_top())
+
 	self.player_stack.show_top()
+	self.cpu_stack.show_top()
 
 func _input(event) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -44,3 +54,6 @@ func raycast_check_for_card():
 
 # at beginning, create player stack
 # deal from deck, add child to stack
+func handle_click():
+	self.player_stack.next_turn()
+	self.cpu_stack.next_turn()

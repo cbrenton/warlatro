@@ -16,7 +16,7 @@ func show_top() -> void:
 	self.visible_card.position = self.pos
 	add_child(self.visible_card)
 
-func handle_click():
+func next_turn():
 	# call flip on top card
 	# if top card gets deleted, add next top card
 	var was_deleted = self.visible_card.flip()

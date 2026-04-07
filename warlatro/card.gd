@@ -34,7 +34,7 @@ func flip() -> bool:
 		return false
 
 func handle_click():
-	get_parent().handle_click()
+	get_parent().get_parent().handle_click()
 
 # rank is a string
 func initialize(rank = null, suit = null):
