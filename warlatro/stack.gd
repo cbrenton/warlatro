@@ -38,7 +38,7 @@ func next_turn() -> Node:
 	return null
 
 func empty():
-	return len(self.cards) == 0 and self.visible_card != null
+	return cards_left() == 0
 
 func display_first_card() -> void:
 	display_new_card()

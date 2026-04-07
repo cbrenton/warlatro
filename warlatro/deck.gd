@@ -1,6 +1,11 @@
 extends Node2D
 
-const SUITS = ["hearts", "clubs", "diamonds", "spades"]
+const SUITS = {
+	1: "spades",
+	2: "hearts",
+	3: "diamonds",
+	4: "clubs"
+}
 const RANKS = {
 	2: "02",
 	3: "03",
@@ -24,10 +29,11 @@ var cards = []
 func _init():
 	# populate cards
 	for rank_item in RANKS:
-		for suit in SUITS:
+		for suit_item in SUITS:
 			var rank_str = RANKS[rank_item]
+			var suit_str = SUITS[suit_item]
 			var card = CARD_SCENE.instantiate()
-			card.initialize(rank_item, rank_str, suit)
+			card.initialize(rank_item, rank_str, suit_item, suit_str)
 			self.cards.push_back(card)
 
 func shuffle():
