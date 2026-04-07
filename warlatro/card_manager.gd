@@ -18,6 +18,7 @@ func _ready() -> void:
 	self.cpu_stack = STACK_SCENE.instantiate()
 	self.cpu_stack.initialize(Vector2(300, 200))
 
+	# add stacks to scene
 	add_child(self.player_stack)
 	add_child(self.cpu_stack)
 
@@ -26,8 +27,8 @@ func _ready() -> void:
 		self.player_stack.add_card(self.deck.deal_top())
 		self.cpu_stack.add_card(self.deck.deal_top())
 
-	self.player_stack.show_top()
-	self.cpu_stack.show_top()
+	self.player_stack.display_first_card()
+	self.cpu_stack.display_first_card()
 
 func _input(event) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -36,8 +37,8 @@ func _input(event) -> void:
 			if card:
 				card.handle_click()
 
-func deal_from_deck(deck, x_pos):
-	var card = deck.deal_top()
+func deal_from_deck(x_pos):
+	var card = self.deck.deal_top()
 	card.position = Vector2(x_pos, 200)
 	add_child(card)
 
@@ -55,5 +56,12 @@ func raycast_check_for_card():
 # at beginning, create player stack
 # deal from deck, add child to stack
 func handle_click():
-	self.player_stack.next_turn()
-	self.cpu_stack.next_turn()
+	var player_card = self.player_stack.next_turn()
+	var cpu_card = self.cpu_stack.next_turn()
+	if self.player_stack.has_turns_left() and self.cpu_stack.has_turns_left():
+		if player_card and cpu_card:
+			print("comparing two cards")
+		else:
+			print("ready for next turn")
+	else:
+		print("game over")
