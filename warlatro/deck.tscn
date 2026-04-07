@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://6jur6866ig57"]
+
+[ext_resource type="Script" uid="uid://dgnbckg7ugj2u" path="res://deck.gd" id="1_nxs2u"]
+
+[node name="Deck" type="Node2D" unique_id=25859790]
+script = ExtResource("1_nxs2u")

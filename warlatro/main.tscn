@@ -1,12 +1,11 @@
 [gd_scene format=3 uid="uid://gcr4akuvesrt"]
 
 [ext_resource type="Script" uid="uid://dotud1c8v7iww" path="res://card_manager.gd" id="1_0xm2m"]
-[ext_resource type="Script" uid="uid://dgnbckg7ugj2u" path="res://deck.gd" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://6jur6866ig57" path="res://deck.tscn" id="2_0xm2m"]
 
 [node name="Main" type="Node2D" unique_id=974964384]
 
 [node name="CardManager" type="Node2D" parent="." unique_id=1688188572]
 script = ExtResource("1_0xm2m")
 
-[node name="Deck" type="Node2D" parent="." unique_id=432344788]
-script = ExtResource("2_0xm2m")
+[node name="Deck" parent="." unique_id=25859790 instance=ExtResource("2_0xm2m")]

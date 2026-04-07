@@ -38,18 +38,13 @@ func flip():
 		$Sprite2D.texture = self.texture
 		self.is_flipped = true
 
-func randomize():
-	self.rank = RANKS[rng.randi_range(2, 14)]
-	self.suit = SUITS[rng.randi_range(0, 3)]
-	print("setting rank to %d and suit to %s", [self.rank, self.suit])
-
+# rank is a string
 func initialize(rank = null, suit = null):
 	if rank and suit:
 		self.rank = rank
 		self.suit = suit
 	else:
 		print("no rank or suit passed")
-		self.randomize()
 
 	var texture_path = "res://assets/cards/%s_of_%s.png" % [self.rank, self.suit]
 	self.texture = load(texture_path)
