@@ -39,6 +39,14 @@ func _input(event) -> void:
 			if card:
 				card.handle_click()
 
+func _process(_delta) -> void:
+	if Input.is_key_pressed(KEY_SHIFT):
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			var card = raycast_check_for_card()
+			if card:
+				card.handle_click()
+
+
 func deal_from_deck(x_pos):
 	var card = self.deck.deal_top()
 	card.position = Vector2(x_pos, 200)
