@@ -7,6 +7,7 @@ var player_stack;
 var cpu_stack;
 var deck;
 var is_game_ended = false
+var _js_callback  # must hold a reference to prevent GC
 
 @onready var my_label = $WinLabel
 
@@ -31,6 +32,16 @@ func _ready() -> void:
 
 	self.player_stack.display_first_card()
 	self.cpu_stack.display_first_card()
+
+	if OS.get_name() == "Web":
+		_js_callback = JavaScriptBridge.create_callback(_on_rcade_input)
+		JavaScriptBridge.get_interface("window")["_godot_input_cb"] = _js_callback
+
+func _on_rcade_input(args) -> void:
+	var button = args[0]
+	var pressed = args[1]
+	if button == "A" and pressed:
+		handle_click()
 
 func _input(event) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:

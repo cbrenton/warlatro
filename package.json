@@ -1,0 +1,13 @@
+{
+  "name": "warlatro",
+  "type": "module",
+  "scripts": {
+    "build": "esbuild rcade_bridge.js --bundle --format=iife --outfile=export/rcade_bundle.js"
+  },
+  "dependencies": {
+    "@rcade/plugin-input-classic": "^0.2.3"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}
